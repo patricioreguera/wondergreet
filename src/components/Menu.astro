@@ -19,14 +19,16 @@ const menuItems = [
 ];
 ---
 
-<div class="bg-[#87CEEB] px-4 flex items-center flex-wrap justify-between">
+<div class="px-4 flex items-center flex-wrap justify-between">
 	<div class="flex gap-4 py-3">
-		<a href="/" class="text-2xl font-bold text-white">Wonder Great</a>
+		<a href="/">
+			<img src="/Logo.png" class="h-12" />
+		</a>
 	</div>
-	<div class="flex gap-5 text-white">
+	<div class="flex gap-5 text-secondary">
 		{
 			menuItems.map((item) => (
-				<a class="hover:pointer" href={item.link}>
+				<a class="hover:pointer text-secondary" href={item.link}>
 					{item.title}
 				</a>
 			))
