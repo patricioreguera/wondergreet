@@ -1,4 +1,4 @@
-import vercel from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel/serverless";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import db from "@astrojs/db";
