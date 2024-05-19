@@ -1,5 +1,5 @@
 ---
-import { db, User } from "astro:db";
+/* import { db, User } from "astro:db";
 
 const users = await db.select().from(User);
 
@@ -25,6 +25,7 @@ if (Astro.request.method === "POST") {
 		// Maneja el error de inserción aquí
 	}
 }
+--- */
 ---
 
 <h2>Usuarios</h2>
@@ -51,7 +52,7 @@ if (Astro.request.method === "POST") {
 
 	<button type="submit" class="bg-neutral-400">Enviar</button>
 </form>
-
+<!-- 
 {
 	users.map(({ username, email }) => (
 		<article>
@@ -59,4 +60,4 @@ if (Astro.request.method === "POST") {
 			<p>Email: {email}</p>
 		</article>
 	))
-}
+} -->
