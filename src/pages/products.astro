@@ -1,7 +1,40 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const products = [
+	{ title: "Product 1", description: "Description 1", image: "https://example.com/image1.jpg" },
+	{ title: "Product 2", description: "Description 2", image: "https://example.com/image2.jpg" },
+	{ title: "Product 3", description: "Description 3", image: "https://example.com/image3.jpg" },
+	{ title: "Product 4", description: "Description 4", image: "https://example.com/image4.jpg" },
+	{ title: "Product 5", description: "Description 5", image: "https://example.com/image5.jpg" },
+	{ title: "Product 6", description: "Description 6", image: "https://example.com/image6.jpg" },
+	{ title: "Product 7", description: "Description 7", image: "https://example.com/image7.jpg" },
+	{ title: "Product 8", description: "Description 8", image: "https://example.com/image8.jpg" },
+	{ title: "Product 9", description: "Description 9", image: "https://example.com/image9.jpg" },
+	{ title: "Product 10", description: "Description 10", image: "https://example.com/image10.jpg" },
+];
+
+// Print the product details
+console.log(products);
+
 ---
 
-<Layout title="Welcome to WonderGreet.">
-	<main></main>
-</Layout>
+<Layout title="Welcome to WonderGreet." >
+<main class="grid lg:grid-cols-3 gap-2 md:grid-cols-2 grid-cols-1 p-4 justyfy-center items-center">
+
+{
+	products.map((product) => (
+		<div class="product">
+		<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+				<img class="p-8 rounded-t-lg" src={product.image} alt={product.title} />
+				<div class="px-5 pb-5">
+					<h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{product.title}</h5>
+					<p class="font-normal text-gray-700 dark:text-gray-400">{product.description}</p>
+				</div>
+		</div>
+
+		</div>
+	))
+}
+
+
+</main>
