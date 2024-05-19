@@ -10,3 +10,7 @@ export default defineConfig({
 	output: "server",
 	adapter: vercel(),
 });
+/* 
+
+import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static'; */

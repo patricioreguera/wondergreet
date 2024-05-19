@@ -8,17 +8,17 @@ const users = await db.select().from(User);
 if (Astro.request.method === "POST") {
 	// parse form data
 	const formData = await Astro.request.formData();
-	const id = formData.get("id");
+	const id = Number(formData.get("id"));
 	const username = formData.get("username");
 	const email = formData.get("email");
+
 	if (
 		typeof id === "number" &&
 		typeof username === "string" &&
 		typeof email === "string"
 	) {
-		// insert form data into the Comment table
 		await db.insert(User).values({ id, username, email });
-		console.log({ id, username, email });
+		// insert form data into the Comment table
 	}
 }
 ---
