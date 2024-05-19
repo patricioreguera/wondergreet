@@ -1,8 +1,8 @@
-import { db, Comment } from 'astro:db';
+import { db, User } from 'astro:db';
 
 export default async function() {
-  await db.insert(Comment).values([
-    { authorId: 1, body: 'Hope you like Astro DB!' },
-    { authorId: 2, body: 'Enjoy!'},
+  await db.insert(User).values([
+    { id: 1, username: 'Patricio Reguera',email:"regu@gmail.com"},
+    { id: 2, username: 'Martina Reguera!', email:"martu@emal.com"},
   ])
 }
