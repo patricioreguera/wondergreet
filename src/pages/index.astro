@@ -1,77 +1,62 @@
 ---
 import { db, User } from "astro:db";
-const users = await db.select().from(User);
-/* 
 
-/* console.log(comments); */
+const users = await db.select().from(User);
 
 if (Astro.request.method === "POST") {
-	// parse form data
-	const formData = await Astro.request.formData();
-	const id = Number(formData.get("id"));
-	const username = formData.get("username");
-	const email = formData.get("email");
+	try {
+		const formData = await Astro.request.formData();
+		const id = Number(formData.get("id"));
+		const username = formData.get("username");
+		const email = formData.get("email");
 
-	if (
-		typeof id === "number" &&
-		typeof username === "string" &&
-		typeof email === "string"
-	) {
-		await db.insert(User).values({ id, username, email });
-		// insert form data into the Comment table
+		if (
+			typeof id === "number" &&
+			typeof username === "string" &&
+			typeof email === "string"
+		) {
+			await db.insert(User).values({ id, username, email });
+			// Inserta datos del formulario en la tabla de usuarios
+		} else {
+			throw new Error("Invalid data format");
+		}
+	} catch (error) {
+		console.error("Error inserting user:", error);
+		// Maneja el error de inserción aquí
 	}
 }
 ---
 
-<h2>Comments</h2>
+<h2>Usuarios</h2>
 
 <form method="POST" style="display: grid">
-	<label for="author">id</label>
+	<label for="id">ID</label>
+	<input id="id" name="id" placeholder="ID" class="border border-neutral-500" />
+
+	<label for="username">Nombre de usuario</label>
 	<input
-		id="author"
-		name="id"
-		placeholder="author"
+		id="username"
+		name="username"
+		placeholder="Nombre de usuario"
 		class="border border-neutral-500"
 	/>
 
-	<label for="content">Username</label>
-	<textarea
-		id="content"
-		name="username"
-		class="border border-neutral-500"
-		placeholder="content"></textarea>
-	<label for="content">email</label>
-	<textarea
-		id="content"
+	<label for="email">Email</label>
+	<input
+		id="email"
 		name="email"
+		placeholder="Email"
 		class="border border-neutral-500"
-		placeholder="content"></textarea>
+	/>
 
-	<button type="submit" class="bg-neutral-400">Submit</button>
+	<button type="submit" class="bg-neutral-400">Enviar</button>
 </form>
 
 {
 	users.map(({ username, email }) => (
 		<article>
-			<p>Author: {username}</p>
-			<p>{email}</p>
+			<p>Nombre de usuario: {username}</p>
+			<p>Email: {email}</p>
 		</article>
 	))
 }
-<!-- ---
-import Layout from "../layouts/Layout.astro";
-import Banner from "../components/Banner.astro";
-import BannerProducts from "../components/BannerProducts.astro";
-import Testimony from "../components/Testimony.astro";
-import SpecialOffer from "../components/SpecialOffer.astro";
----
-
-<Layout title="Welcome to WonderGreet">
-	<main>
-		<Banner />
-		<BannerProducts />
-		<Testimony />
-		<SpecialOffer />
-	</main>
-</Layout>
- -->
